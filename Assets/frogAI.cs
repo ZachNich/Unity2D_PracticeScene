@@ -11,7 +11,7 @@ public class frogAI : MonoBehaviour
     [SerializeField] float frogJump = 5f;
     [SerializeField] Transform groundCheck;
     float jumpDir = -1;
-    bool isGrounded;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -32,18 +32,19 @@ public class frogAI : MonoBehaviour
         {
             isGrounded = false;
         }
+        print(isGrounded);
 
-        if (jumpDir > 0)
+        if (jumpDir > 0 && isGrounded)
         {
             // jump right
-            spriteRenderer.flipX = true;
+            //spriteRenderer.flipX = true;
             rb2d.velocity = new Vector2(frogSpeed, frogJump);
             jumpDir -= frogSpeed;
         }
-        else if (jumpDir < 0)
+        else if (jumpDir < 0 && isGrounded)
         {
             // jump left
-            spriteRenderer.flipX = false;
+            //spriteRenderer.flipX = false;
             rb2d.velocity = new Vector2(-frogSpeed, frogJump);
             jumpDir += frogSpeed;
         }

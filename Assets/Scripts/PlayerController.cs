@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer;
-    bool isGrounded;
+    private bool isGrounded;
     [SerializeField] Transform groundCheck;
     [SerializeField] float playerSpeed = 3f;
     [SerializeField] float playerJump = 4f;
