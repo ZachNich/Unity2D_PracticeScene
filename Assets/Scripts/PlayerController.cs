@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Better than update for handling physics
-    private void FixedUpdate()
+    public void HandleMovement()
     {
         // Checks if player is grounded or not
         if (Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
