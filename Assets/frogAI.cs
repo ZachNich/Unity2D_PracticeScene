@@ -20,7 +20,7 @@ public class frogAI : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        readyToJump = true;
+        StartCoroutine(jumpCheck());
     }
 
     private void FixedUpdate()
@@ -30,7 +30,6 @@ public class frogAI : MonoBehaviour
         {
             isGrounded = true;
             animator.Play("frog_idle");
-            HandleJumpLanding();
         }
         else
         {
@@ -45,13 +44,14 @@ public class frogAI : MonoBehaviour
             }
         }
 
-        // Jumps left or right after checking jumpDir
+        // Jumps left or right
         if (jumpDir == "right" && isGrounded && readyToJump)
         {
             // jump right
             spriteRenderer.flipX = true;
             rb2d.velocity = new Vector2(frogSpeed, frogJump);
             jumpDir = "left";
+            readyToJump = false;
         }
         else if (jumpDir == "left" && isGrounded && readyToJump)
         {
@@ -59,13 +59,18 @@ public class frogAI : MonoBehaviour
             spriteRenderer.flipX = false;
             rb2d.velocity = new Vector2(-frogSpeed, frogJump);
             jumpDir = "right";
+            readyToJump = false;
         }
     }
 
-    IEnumerator HandleJumpLanding()
+    // Jump at random intervals
+    IEnumerator jumpCheck()
     {
-        readyToJump = false;
-        yield return new WaitForSeconds(5);
-        readyToJump = true;
+        yield return new WaitForSeconds(Random.Range(1, 5));
+        if (isGrounded)
+        {
+            readyToJump = true;
+        }
+        StartCoroutine(jumpCheck());
     }
 }

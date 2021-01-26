@@ -47,12 +47,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: NPCs
+    uniqueID: 3126265809
+    locked: 0
   - name: Player
     uniqueID: 368001105
     locked: 0
   - name: Foreground
     uniqueID: 4110454813
-    locked: 0
-  - name: NPCs
-    uniqueID: 3126265809
     locked: 0
